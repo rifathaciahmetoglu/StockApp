@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract.Repository;
+﻿using DataAccess.Abstract.DataAccessLayer;
+using DataAccess.Abstract.Repository;
 using DataAccess.Concrete.EntityFramework.Context;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework.DataAccessLayer
 {
-    public class EfCategoryDal : IEntityRepository<Category>
+    public class EfCategoryDal : ICategoryDal
     {
         public void Add(Category entity)
         {
@@ -41,7 +42,7 @@ namespace DataAccess.Concrete.EntityFramework.DataAccessLayer
             }
         }
 
-        public List<Category> GetAll(Expression<Func<Category, bool>> filter = null)
+        public List<Category> GetAll(Expression<Func<Category, bool>>? filter = null)
         {
             using (StockPostgresContext context = new StockPostgresContext())
             {

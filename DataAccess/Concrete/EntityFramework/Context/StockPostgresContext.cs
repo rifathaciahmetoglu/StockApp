@@ -1,5 +1,7 @@
-﻿using Entities.Concrete;
+﻿using DataAccess.Concrete.EntityFramework.DataAccessLayer;
+using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,17 +10,17 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework.Context
 {
+
     public class StockPostgresContext:DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=PostgreSQL; Database=StockAutomation;
-                user Id=postgres; password=solo;
-                Trusted_Connection =true");
+            optionsBuilder.UseNpgsql(@"server=localhost; database=StockAutomation;
+                user Id=postgres; password=12345; Integrated Security=false");
         }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<Category>Categories { get; set; }
-        public DbSet<Employee>Employees { get; set; }
-        public DbSet<Manager>Managers { get; set; }
+        public DbSet<Product>? products { get; set; }
+        public DbSet<Category>? categories { get; set; }
+        public DbSet<Employee>? employees { get; set; }
+        public DbSet<Manager>? managers { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using DataAccess.Abstract.Repository;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract.DataAccessLayer
 {
-    public interface ICategoryDal
+    public interface ICategoryDal:IEntityRepository<Category>
     {
-        List<Category> GetAll();
     }
 }

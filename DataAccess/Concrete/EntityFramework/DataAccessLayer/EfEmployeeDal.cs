@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract.Repository;
+﻿using DataAccess.Abstract.DataAccessLayer;
+using DataAccess.Abstract.Repository;
 using DataAccess.Concrete.EntityFramework.Context;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
@@ -11,21 +12,19 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework.DataAccessLayer
 {
-    public class EfEmployeeDal : IEntityRepository<Employee>
+    public class EfEmployeeDal : IEmployeeDal
     {
         public void Add(Employee entity)
         {
-            using (StockPostgresContext context = new StockPostgresContext())
-            {
-                var addedEntity = context.Entry(entity);
-                addedEntity.State = EntityState.Added;
-                context.SaveChanges();
-            }
+            using StockPostgresContext context = new();
+            var addedEntity = context.Entry(entity);
+            addedEntity.State = EntityState.Added;
+            context.SaveChanges();
         }
 
         public void Delete(Employee entity)
         {
-            using (StockPostgresContext context = new StockPostgresContext())
+            using (StockPostgresContext context = new())
             {
                 var deletedEntity = context.Entry(entity);
                 deletedEntity.State = EntityState.Deleted;
@@ -35,15 +34,13 @@ namespace DataAccess.Concrete.EntityFramework.DataAccessLayer
 
         public Employee Get(Expression<Func<Employee, bool>> filter)
         {
-            using (StockPostgresContext context = new StockPostgresContext())
-            {
-                return context.Set<Employee>().SingleOrDefault(filter);
-            }
+            using StockPostgresContext context = new();
+            return context.Set<Employee>().SingleOrDefault(filter);
         }
 
-        public List<Employee> GetAll(Expression<Func<Employee, bool>> filter = null)
+        public List<Employee> GetAll(Expression<Func<Employee, bool>>? filter = null)
         {
-            using (StockPostgresContext context = new StockPostgresContext())
+            using (StockPostgresContext context = new())
             {
                 return filter == null
                     ? context.Set<Employee>().ToList()
@@ -53,12 +50,10 @@ namespace DataAccess.Concrete.EntityFramework.DataAccessLayer
 
         public void Update(Employee entity)
         {
-            using (StockPostgresContext context = new StockPostgresContext())
-            {
-                var updatedEntity = context.Entry(entity);
-                updatedEntity.State = EntityState.Modified;
-                context.SaveChanges();
-            }
+            using StockPostgresContext context = new();
+            var updatedEntity = context.Entry(entity);
+            updatedEntity.State = EntityState.Modified;
+            context.SaveChanges();
         }
     }
 }

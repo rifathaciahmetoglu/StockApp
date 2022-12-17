@@ -16,6 +16,7 @@ namespace Business.Concrete
         {
             _productDal = productDal;
         }
+
         public List<Product> GetAll()
         {
             return _productDal.GetAll();
@@ -25,5 +26,6 @@ namespace Business.Concrete
         {
             return _productDal.GetAll(p => p.CategoryId == categoryId);
         }
+
     }
 }

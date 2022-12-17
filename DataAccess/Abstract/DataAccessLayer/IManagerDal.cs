@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using DataAccess.Abstract.Repository;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract.DataAccessLayer
 {
-    public class IManagerDal
+    public interface IManagerDal:IEntityRepository<Manager>
     {
-        public List<Manager> GetAll()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
