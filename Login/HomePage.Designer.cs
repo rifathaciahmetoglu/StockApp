@@ -53,6 +53,7 @@
             this.txtProductBarcode = new System.Windows.Forms.TextBox();
             this.txtProductCode = new System.Windows.Forms.TextBox();
             this.txtUnitsInStock = new System.Windows.Forms.TextBox();
+            this.txtProductId = new System.Windows.Forms.TextBox();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.PictureBox();
@@ -108,11 +109,12 @@
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(186, 42);
             this.btnLogOut.TabIndex = 1;
+            this.btnLogOut.TabStop = false;
             this.btnLogOut.Text = "LOGOUT";
             this.btnLogOut.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnLogOut.UseVisualStyleBackColor = true;
-            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
-            this.btnLogOut.Leave += new System.EventHandler(this.btnLogOut_Leave);
+            this.btnLogOut.Click += new System.EventHandler(this.BtnLogOut_Click);
+            this.btnLogOut.Leave += new System.EventHandler(this.BtnLogOut_Leave);
             // 
             // btnCategory4
             // 
@@ -126,11 +128,12 @@
             this.btnCategory4.Name = "btnCategory4";
             this.btnCategory4.Size = new System.Drawing.Size(186, 42);
             this.btnCategory4.TabIndex = 1;
+            this.btnCategory4.TabStop = false;
             this.btnCategory4.Text = "     Yemekhane  ";
             this.btnCategory4.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnCategory4.UseVisualStyleBackColor = true;
-            this.btnCategory4.Click += new System.EventHandler(this.btnCategory4_Click);
-            this.btnCategory4.Leave += new System.EventHandler(this.btnCategory4_Leave);
+            this.btnCategory4.Click += new System.EventHandler(this.BtnCategory4_Click);
+            this.btnCategory4.Leave += new System.EventHandler(this.BtnCategory4_Leave);
             // 
             // btnCategory3
             // 
@@ -144,11 +147,12 @@
             this.btnCategory3.Name = "btnCategory3";
             this.btnCategory3.Size = new System.Drawing.Size(186, 42);
             this.btnCategory3.TabIndex = 1;
+            this.btnCategory3.TabStop = false;
             this.btnCategory3.Text = "         Bahçe      ";
             this.btnCategory3.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnCategory3.UseVisualStyleBackColor = true;
-            this.btnCategory3.Click += new System.EventHandler(this.btnCategory3_Click);
-            this.btnCategory3.Leave += new System.EventHandler(this.btnCategory3_Leave);
+            this.btnCategory3.Click += new System.EventHandler(this.BtnCategory3_Click);
+            this.btnCategory3.Leave += new System.EventHandler(this.BtnCategory3_Leave);
             // 
             // btnCategory2
             // 
@@ -162,11 +166,12 @@
             this.btnCategory2.Name = "btnCategory2";
             this.btnCategory2.Size = new System.Drawing.Size(186, 42);
             this.btnCategory2.TabIndex = 1;
+            this.btnCategory2.TabStop = false;
             this.btnCategory2.Text = "    İş Güvenliği  ";
             this.btnCategory2.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnCategory2.UseVisualStyleBackColor = true;
-            this.btnCategory2.Click += new System.EventHandler(this.btnCategory2_Click);
-            this.btnCategory2.Leave += new System.EventHandler(this.btnCategory2_Leave);
+            this.btnCategory2.Click += new System.EventHandler(this.BtnCategory2_Click);
+            this.btnCategory2.Leave += new System.EventHandler(this.BtnCategory2_Leave);
             // 
             // btnCategory1
             // 
@@ -180,11 +185,12 @@
             this.btnCategory1.Name = "btnCategory1";
             this.btnCategory1.Size = new System.Drawing.Size(186, 42);
             this.btnCategory1.TabIndex = 1;
+            this.btnCategory1.TabStop = false;
             this.btnCategory1.Text = "Sarf Malzemeler";
             this.btnCategory1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this.btnCategory1.UseVisualStyleBackColor = true;
             this.btnCategory1.Click += new System.EventHandler(this.BtnCategory1_Click);
-            this.btnCategory1.Leave += new System.EventHandler(this.btnCategory1_Leave);
+            this.btnCategory1.Leave += new System.EventHandler(this.BtnCategory1_Leave);
             // 
             // panelLogo
             // 
@@ -255,7 +261,8 @@
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(292, 25);
             this.txtSearch.TabIndex = 2;
-            this.txtSearch.Text = "Search For Something...";
+            this.txtSearch.TabStop = false;
+            this.txtSearch.TextChanged += new System.EventHandler(this.TxtSearch_TextChanged);
             // 
             // btnClose
             // 
@@ -267,7 +274,7 @@
             this.btnClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.btnClose.TabIndex = 3;
             this.btnClose.TabStop = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // panelTop
             // 
@@ -279,7 +286,7 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(765, 55);
             this.panelTop.TabIndex = 4;
-            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTop_MouseDown);
+            this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelTop_MouseDown);
             // 
             // dataGridView1
             // 
@@ -297,7 +304,7 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(765, 522);
             this.dataGridView1.TabIndex = 5;
-            this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEnter);
+            this.dataGridView1.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellEnter);
             // 
             // panelData
             // 
@@ -318,6 +325,7 @@
             this.panelChange.Controls.Add(this.txtProductBarcode);
             this.panelChange.Controls.Add(this.txtProductCode);
             this.panelChange.Controls.Add(this.txtUnitsInStock);
+            this.panelChange.Controls.Add(this.txtProductId);
             this.panelChange.Controls.Add(this.txtProductName);
             this.panelChange.Dock = System.Windows.Forms.DockStyle.Right;
             this.panelChange.Location = new System.Drawing.Point(506, 0);
@@ -338,21 +346,22 @@
             this.cmbCategories.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cmbCategories.Size = new System.Drawing.Size(151, 32);
             this.cmbCategories.TabIndex = 9;
+            this.cmbCategories.TabStop = false;
             this.cmbCategories.Text = "Kategori ID";
-            this.cmbCategories.SelectedIndexChanged += new System.EventHandler(this.cmbCategories_SelectedIndexChanged);
+            this.cmbCategories.SelectedIndexChanged += new System.EventHandler(this.CmbCategories_SelectedIndexChanged);
             // 
             // btnChange
             // 
             this.btnChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChange.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnChange.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.btnChange.Location = new System.Drawing.Point(24, 361);
+            this.btnChange.Location = new System.Drawing.Point(21, 415);
             this.btnChange.Name = "btnChange";
             this.btnChange.Size = new System.Drawing.Size(162, 44);
-            this.btnChange.TabIndex = 8;
+            this.btnChange.TabIndex = 1;
             this.btnChange.Text = "Ekle";
             this.btnChange.UseVisualStyleBackColor = true;
-            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
+            this.btnChange.Click += new System.EventHandler(this.BtnChange_Click);
             // 
             // txtProductDesc
             // 
@@ -362,15 +371,15 @@
             this.txtProductDesc.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtProductDesc.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtProductDesc.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtProductDesc.Location = new System.Drawing.Point(21, 294);
+            this.txtProductDesc.Location = new System.Drawing.Point(21, 363);
             this.txtProductDesc.Multiline = true;
             this.txtProductDesc.Name = "txtProductDesc";
             this.txtProductDesc.Size = new System.Drawing.Size(168, 25);
-            this.txtProductDesc.TabIndex = 4;
+            this.txtProductDesc.TabIndex = 6;
             this.txtProductDesc.Text = "Ürün Açıklaması";
             this.txtProductDesc.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtProductDesc.Enter += new System.EventHandler(this.txtProductDesc_Enter);
-            this.txtProductDesc.Leave += new System.EventHandler(this.txtProductDesc_Leave);
+            this.txtProductDesc.Enter += new System.EventHandler(this.TxtProductDesc_Enter);
+            this.txtProductDesc.Leave += new System.EventHandler(this.TxtProductDesc_Leave);
             // 
             // txtProductBarcode
             // 
@@ -380,15 +389,15 @@
             this.txtProductBarcode.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtProductBarcode.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtProductBarcode.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtProductBarcode.Location = new System.Drawing.Point(21, 239);
+            this.txtProductBarcode.Location = new System.Drawing.Point(21, 308);
             this.txtProductBarcode.Multiline = true;
             this.txtProductBarcode.Name = "txtProductBarcode";
             this.txtProductBarcode.Size = new System.Drawing.Size(168, 25);
-            this.txtProductBarcode.TabIndex = 4;
+            this.txtProductBarcode.TabIndex = 5;
             this.txtProductBarcode.Text = "Ürün Barkod";
             this.txtProductBarcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtProductBarcode.Enter += new System.EventHandler(this.txtProductBarcode_Enter);
-            this.txtProductBarcode.Leave += new System.EventHandler(this.txtProductBarcode_Leave);
+            this.txtProductBarcode.Enter += new System.EventHandler(this.TxtProductBarcode_Enter);
+            this.txtProductBarcode.Leave += new System.EventHandler(this.TxtProductBarcode_Leave);
             // 
             // txtProductCode
             // 
@@ -398,15 +407,15 @@
             this.txtProductCode.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtProductCode.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtProductCode.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtProductCode.Location = new System.Drawing.Point(21, 183);
+            this.txtProductCode.Location = new System.Drawing.Point(21, 252);
             this.txtProductCode.Multiline = true;
             this.txtProductCode.Name = "txtProductCode";
             this.txtProductCode.Size = new System.Drawing.Size(168, 25);
             this.txtProductCode.TabIndex = 4;
             this.txtProductCode.Text = "Ürün Kodu";
             this.txtProductCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtProductCode.Enter += new System.EventHandler(this.txtProductCode_Enter);
-            this.txtProductCode.Leave += new System.EventHandler(this.txtProductCode_Leave);
+            this.txtProductCode.Enter += new System.EventHandler(this.TxtProductCode_Enter);
+            this.txtProductCode.Leave += new System.EventHandler(this.TxtProductCode_Leave);
             // 
             // txtUnitsInStock
             // 
@@ -416,15 +425,35 @@
             this.txtUnitsInStock.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUnitsInStock.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtUnitsInStock.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtUnitsInStock.Location = new System.Drawing.Point(21, 130);
+            this.txtUnitsInStock.Location = new System.Drawing.Point(21, 199);
             this.txtUnitsInStock.Multiline = true;
             this.txtUnitsInStock.Name = "txtUnitsInStock";
             this.txtUnitsInStock.Size = new System.Drawing.Size(168, 25);
-            this.txtUnitsInStock.TabIndex = 4;
+            this.txtUnitsInStock.TabIndex = 3;
             this.txtUnitsInStock.Text = "Ürün Adedi";
             this.txtUnitsInStock.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtUnitsInStock.Enter += new System.EventHandler(this.txtUnitsInStock_Enter);
-            this.txtUnitsInStock.Leave += new System.EventHandler(this.txtUnitsInStock_Leave);
+            this.txtUnitsInStock.Enter += new System.EventHandler(this.TxtUnitsInStock_Enter);
+            this.txtUnitsInStock.Leave += new System.EventHandler(this.TxtUnitsInStock_Leave);
+            // 
+            // txtProductId
+            // 
+            this.txtProductId.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtProductId.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(79)))), ((int)(((byte)(99)))));
+            this.txtProductId.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtProductId.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtProductId.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtProductId.Location = new System.Drawing.Point(21, 97);
+            this.txtProductId.Multiline = true;
+            this.txtProductId.Name = "txtProductId";
+            this.txtProductId.ReadOnly = true;
+            this.txtProductId.Size = new System.Drawing.Size(168, 27);
+            this.txtProductId.TabIndex = 7;
+            this.txtProductId.TabStop = false;
+            this.txtProductId.Text = "Ürün ID";
+            this.txtProductId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtProductId.Enter += new System.EventHandler(this.TxtProductName_Enter);
+            this.txtProductId.Leave += new System.EventHandler(this.TxtProductName_Leave);
             // 
             // txtProductName
             // 
@@ -434,15 +463,15 @@
             this.txtProductName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtProductName.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtProductName.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtProductName.Location = new System.Drawing.Point(21, 79);
+            this.txtProductName.Location = new System.Drawing.Point(21, 148);
             this.txtProductName.Multiline = true;
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(168, 27);
-            this.txtProductName.TabIndex = 4;
+            this.txtProductName.TabIndex = 2;
             this.txtProductName.Text = "Ürün Adı";
             this.txtProductName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtProductName.Enter += new System.EventHandler(this.txtProductName_Enter);
-            this.txtProductName.Leave += new System.EventHandler(this.txtProductName_Leave);
+            this.txtProductName.Enter += new System.EventHandler(this.TxtProductName_Enter);
+            this.txtProductName.Leave += new System.EventHandler(this.TxtProductName_Leave);
             // 
             // panel3
             // 
@@ -464,7 +493,7 @@
             this.btnDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.btnDelete.TabIndex = 2;
             this.btnDelete.TabStop = false;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
             // btnEdit
             // 
@@ -475,7 +504,7 @@
             this.btnEdit.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.btnEdit.TabIndex = 1;
             this.btnEdit.TabStop = false;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            this.btnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
             // btnAdd
             // 
@@ -486,7 +515,7 @@
             this.btnAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.btnAdd.TabIndex = 0;
             this.btnAdd.TabStop = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
             // HomePage
             // 
@@ -554,5 +583,6 @@
         private TextBox txtProductName;
         private Button btnChange;
         private ComboBox cmbCategories;
+        private TextBox txtProductId;
     }
 }
