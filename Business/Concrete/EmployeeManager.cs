@@ -16,9 +16,25 @@ namespace Business.Concrete
         {
             _employeeDal=employeeDal;
         }
+
+        public void Add(Employee employee)
+        {
+            _employeeDal.Add(employee);
+        }
+
+        public void Delete(Employee employee)
+        {
+            _employeeDal.Delete(employee);
+        }
+
         public List<Employee> GetAll()
         {
             return _employeeDal.GetAll();
+        }
+
+        public void Update(Employee employee)
+        {
+            _employeeDal.Update(employee);
         }
     }
 }

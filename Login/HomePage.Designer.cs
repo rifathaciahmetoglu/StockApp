@@ -339,6 +339,7 @@
             this.cmbCategories.Size = new System.Drawing.Size(151, 32);
             this.cmbCategories.TabIndex = 9;
             this.cmbCategories.Text = "Kategori ID";
+            this.cmbCategories.SelectedIndexChanged += new System.EventHandler(this.cmbCategories_SelectedIndexChanged);
             // 
             // btnChange
             // 
@@ -351,6 +352,7 @@
             this.btnChange.TabIndex = 8;
             this.btnChange.Text = "Ekle";
             this.btnChange.UseVisualStyleBackColor = true;
+            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
             // 
             // txtProductDesc
             // 
@@ -462,6 +464,7 @@
             this.btnDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.btnDelete.TabIndex = 2;
             this.btnDelete.TabStop = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnEdit
             // 

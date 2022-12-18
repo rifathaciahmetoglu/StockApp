@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using Business.Concrete;
 using DataAccess.Concrete.EntityFramework.DataAccessLayer;
 using Entities.Concrete;
+using DataAccess.Abstract.DataAccessLayer;
 
 namespace UI
 {
@@ -229,6 +230,7 @@ namespace UI
             else
                 panelChange.Visible = true;
             sayi = 0;
+
         }
         public int sayi;
         private void btnEdit_Click(object sender, EventArgs e)
@@ -271,6 +273,52 @@ namespace UI
             }
         }
 
+        private void btnChange_Click(object sender, EventArgs e)
+        {
+            if (sayi==0)
+            {
+            productManager.Add(new Product
+            {
+                CategoryId = index,
+                ProductName = txtProductName.Text,
+                UnitsInStock = Convert.ToInt16(txtUnitsInStock.Text),
+                ProductCode = txtProductCode.Text,
+                ProductBarcode = txtProductBarcode.Text,
+                ProductDescription = txtProductDesc.Text
+            }) ;
+            productManager.GetAllByCategoryId(index);
+            }
+            else if (sayi==1)
+            {
+                productManager.Update(new Product
+                {
+                    CategoryId = index,
+                    ProductName = txtProductName.Text,
+                    UnitsInStock = Convert.ToInt16(txtUnitsInStock.Text),
+                    ProductCode = txtProductCode.Text,
+                    ProductBarcode = txtProductBarcode.Text,
+                    ProductDescription = txtProductDesc.Text
+                });
+                productManager.GetAllByCategoryId(index);
+            }
+        }
+        int index;
+        private void cmbCategories_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbCategories.SelectedIndex == 0)
+                index = 1;
+            else if(cmbCategories.SelectedIndex==1) index = 2;
+            else if(cmbCategories.SelectedIndex==2) index = 3;
+            else if(cmbCategories.SelectedIndex==3) index = 4;
 
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            productManager.Delete(new Product { ProductId = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value) });
+            productManager.GetAllByCategoryId(index);
+            
+        }
     }
 }
