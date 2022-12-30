@@ -12,6 +12,8 @@ using Business.Concrete;
 using DataAccess.Concrete.EntityFramework.DataAccessLayer;
 using Entities.Concrete;
 using DataAccess.Abstract.DataAccessLayer;
+using Business.Constants;
+using Login;
 
 namespace UI
 {
@@ -56,10 +58,10 @@ namespace UI
             btnCategory1.BackColor = Color.FromArgb(46, 51, 73);
 
             //Commands
-            dataGridView1.DataSource = productManager.GetAllByCategoryId(1);       
+            dataGridView1.DataSource = productManager.GetAllByCategoryId(1).Data;       
             dataGridView1.ClearSelection();
         }
-
+        
         private void BtnCategory2_Click(object sender, EventArgs e)
         {
             //UI
@@ -68,7 +70,7 @@ namespace UI
             btnCategory2.BackColor = Color.FromArgb(46, 51, 73);
 
             //Commands
-            dataGridView1.DataSource=productManager.GetAllByCategoryId(2);
+            dataGridView1.DataSource=productManager.GetAllByCategoryId(2).Data;
             dataGridView1.ClearSelection();
         }
 
@@ -80,7 +82,7 @@ namespace UI
             btnCategory3.BackColor = Color.FromArgb(46, 51, 73);
 
             //Commands
-            dataGridView1.DataSource=productManager.GetAllByCategoryId(3);
+            dataGridView1.DataSource=productManager.GetAllByCategoryId(3).Data;
             dataGridView1.ClearSelection();
         }
 
@@ -92,7 +94,19 @@ namespace UI
             btnCategory4.BackColor = Color.FromArgb(46, 51, 73);
 
             //Commands
-            dataGridView1.DataSource=productManager.GetAllByCategoryId(4);
+            dataGridView1.DataSource=productManager.GetAllByCategoryId(4).Data;
+            dataGridView1.ClearSelection();
+        }
+        private void btnCategory5_Click(object sender, EventArgs e)
+        {
+            EmployeeManager employeeManager=new(new EfEmployeeDal());
+            //UI
+            pnlNav.Height = btnCategory4.Height;
+            pnlNav.Top = btnCategory4.Top;
+            btnCategory4.BackColor = Color.FromArgb(46, 51, 73);
+
+            //Commands
+            dataGridView1.DataSource = employeeManager.GetUserDetails().Data;
             dataGridView1.ClearSelection();
         }
         //DRAG FORM
@@ -112,76 +126,95 @@ namespace UI
         //panelChange textbox design
         private void TxtProductName_Enter(object sender, EventArgs e)
         {
-            if (txtProductName.Text == "Ürün Adı")
-                txtProductName.Text = "";
+            if (txtProductName.Text == Messages.ProductName)
+                txtProductName.Text = Messages.Space;
         }
 
         private void TxtProductName_Leave(object sender, EventArgs e)
         {
-            if (txtProductName.Text == "")
-                txtProductName.Text = "Ürün Adı";
+            if (txtProductName.Text == Messages.Space)
+                txtProductName.Text = Messages.ProductName;
         }
 
         private void TxtUnitsInStock_Enter(object sender, EventArgs e)
         {
-            if (txtUnitsInStock.Text == "Ürün Adedi")
-                txtUnitsInStock.Text = "";
+            if (txtUnitsInStock.Text == Messages.UnitsInStock)
+                txtUnitsInStock.Text = Messages.Space;
         }
 
         private void TxtUnitsInStock_Leave(object sender, EventArgs e)
         {
-            if (txtUnitsInStock.Text == "")
-                txtUnitsInStock.Text = "Ürün Adedi";
+            if (txtUnitsInStock.Text == Messages.Space)
+                txtUnitsInStock.Text = Messages.UnitsInStock;
         }
 
         private void TxtProductCode_Enter(object sender, EventArgs e)
         {
-            if (txtProductCode.Text == "Ürün Kodu")
-                txtProductCode.Text = "";
+            if (txtProductCode.Text == Messages.ProductCode)
+                txtProductCode.Text = Messages.Space;
         }
 
         private void TxtProductCode_Leave(object sender, EventArgs e)
         {
-            if (txtProductCode.Text == "")
-                txtProductCode.Text = "Ürün Kodu";
+            if (txtProductCode.Text == Messages.Space)
+                txtProductCode.Text = Messages.ProductCode;
         }
 
         private void TxtProductBarcode_Enter(object sender, EventArgs e)
         {
-            if (txtProductBarcode.Text == "Ürün Barkod")
-                txtProductBarcode.Text = "";
+            if (txtProductBarcode.Text == Messages.ProductBarcode)
+                txtProductBarcode.Text = Messages.Space;
         }
 
         private void TxtProductBarcode_Leave(object sender, EventArgs e)
-        {
-            if (txtProductBarcode.Text == "")
-                txtProductBarcode.Text = "Ürün Barkod";
+        {   
+            if (txtProductBarcode.Text == Messages.Space)
+                txtProductBarcode.Text = Messages.ProductBarcode;
         }
 
         private void TxtProductDesc_Enter(object sender, EventArgs e)
         {
-            if (txtProductDesc.Text == "Ürün Açıklaması")
-                txtProductDesc.Text = "";
+            if (txtProductDesc.Text == Messages.ProductDesc)
+                txtProductDesc.Text = Messages.Space;
         }
 
         private void TxtProductDesc_Leave(object sender, EventArgs e)
         {
-            if (txtProductDesc.Text == "")
-                txtProductDesc.Text = "Ürün Açıklaması";
+            if (txtProductDesc.Text == Messages.Space)
+                txtProductDesc.Text = Messages.ProductDesc;
         }
 
         //Button Commands
 
         //Form Açılış
+        public string adminOrNot;
+        public string userName;
         CategoryManager categoryManager = new(new EfCategoryDal());
         private void HomePage_Load(object sender, EventArgs e)
         {
-            foreach (var category in categoryManager.GetAll())
+            labelSomeUser.Text = adminOrNot;
+            labelUsername.Text = userName;
+            if (labelSomeUser.Text=="Admin")
             {
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-                cmbCategories.Items.Add(category.CategoryName.ToString());
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
+                btnCategory5.Visible = true;
+                btnManager.Visible = true;
             }
+            else
+            {
+                btnCategory5.Visible = false;
+                btnManager.Visible = false;
+            }
+
+            var result = categoryManager.GetAll();
+            if (result.Succes == true)
+            {
+                foreach (var category in categoryManager.GetAll().Data)
+                {
+                    cmbCategories.Items.Add(category.CategoryName);
+                }
+            }
+            else
+                MessageBox.Show(Messages.UnknownError);
 
         }
         //Çıkış Yap butonu
@@ -190,6 +223,10 @@ namespace UI
             pnlNav.Height = btnLogOut.Height;
             pnlNav.Top = btnLogOut.Top;
             btnLogOut.BackColor = Color.FromArgb(46, 51, 73);
+            //commands
+            LoginPage loginPage = new();
+            loginPage.Show();
+            this.Close();
         }
         private void BtnLogOut_Leave(object sender, EventArgs e)
         {
@@ -226,8 +263,8 @@ namespace UI
         //Ürün ekleme Butonu
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            btnChange.Text = "EKLE";
-            cmbCategories.Text = "Kategoriler";
+            btnChange.Text = Messages.Add;
+            cmbCategories.Text = Messages.Category ;
             if (panelChange.Visible == true)
                 panelChange.Visible = false;
             else
@@ -235,10 +272,11 @@ namespace UI
             sayi = 0;
 
         }
+
         public int sayi;
         private void BtnEdit_Click(object sender, EventArgs e)
         {
-            btnChange.Text = "Güncelle";
+            btnChange.Text = Messages.Update;
             if (panelChange.Visible == true)
                 panelChange.Visible = false;
             else
@@ -248,18 +286,18 @@ namespace UI
         }
         void PanelChangeReset()
         {
-            cmbCategories.Text = "Kategoriler";
-            txtProductName.Text = "Ürün Adı";
-            txtUnitsInStock.Text = "Ürün Adedi";
-            txtProductCode.Text = "Ürün Kodu";
-            txtProductBarcode.Text = "Ürün Barkod";
-            txtProductDesc.Text= "Ürün Açıklaması";
+            cmbCategories.Text = Messages.Category;
+            txtProductName.Text = Messages.ProductName;
+            txtUnitsInStock.Text = Messages.UnitsInStock;
+            txtProductCode.Text = Messages.ProductCode;
+            txtProductBarcode.Text = Messages.ProductBarcode;
+            txtProductDesc.Text= Messages.ProductDesc;
         }
         private void DataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             if(sayi==1)
             {
-                cmbCategories.Text = "";
+                cmbCategories.Text = Messages.Space;
                 string? id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
                 string? categoryName = dataGridView1.CurrentRow.Cells[1].Value.ToString();
                 string? productName = dataGridView1.CurrentRow.Cells[2].Value.ToString();
@@ -293,7 +331,7 @@ namespace UI
             }) ;
                 PanelChangeReset();
                 panelChange.Visible = false;
-                dataGridView1.DataSource = productManager.GetAllByCategoryId(index);
+                dataGridView1.DataSource = productManager.GetAllByCategoryId(index).Data;
             }
             else if (sayi==1)
             {
@@ -309,7 +347,7 @@ namespace UI
                 });
                 PanelChangeReset();
                 panelChange.Visible = false;
-                dataGridView1.DataSource = productManager.GetAllByCategoryId(index);
+                dataGridView1.DataSource = productManager.GetAllByCategoryId(index).Data;
             }
         }
         int index;
@@ -327,11 +365,28 @@ namespace UI
         private void BtnDelete_Click(object sender, EventArgs e)
         {
             productManager.Delete(new Product { ProductId = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value) });
-            dataGridView1.DataSource = productManager.GetAllByCategoryId(index);
+            dataGridView1.DataSource = productManager.GetAllByCategoryId(index).Data;
             
         }
+        //Kişi Ekleme Butonu
+        public int kisi;
+        private void btnManager_Click(object sender, EventArgs e)
+        {
+            if (employeePanel.Visible == true)
+                employeePanel.Visible = false;
+            else
+                employeePanel.Visible = true;
+        }
+         
         private void TxtSearch_TextChanged(object sender, EventArgs e)
         {
         }
+
+        private void labelSomeUser_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

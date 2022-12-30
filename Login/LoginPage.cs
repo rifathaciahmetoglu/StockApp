@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using Business.Constants;
 using DataAccess.Concrete.EntityFramework.DataAccessLayer;
 using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI;
 
 namespace Login
 {
@@ -21,19 +23,47 @@ namespace Login
         {
             InitializeComponent();
         }
-
+        public string Admin;
+        string User;
         //Login butonuna tıklayınca
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            ManagerManager managerManager = new(new EfManagerDal());
+            EmployeeManager employeeManager = new(new EfEmployeeDal());
 
-            foreach (var manager in managerManager.GetAll())
+            var result = employeeManager.GetAll();
+
+            if (result.Succes == true)
             {
-                if (manager.Username == txtUsername.Text && manager.Password == txtPassword.Text)
-                    MessageBox.Show("giriş başarılı");
-                else
-                    MessageBox.Show("Yanlış yazıyon yarram");
+                foreach (var manager in employeeManager.GetAll().Data)
+                {
+                    if (manager.Username == txtUsername.Text && manager.Password == txtPassword.Text)
+                    {
+                        HomePage homePage=new();
+                        if (manager.UserId==1)
+                        {
+                            homePage.adminOrNot ="Admin";
+                            homePage.userName= txtUsername.Text;
+                            homePage.ShowDialog();
+
+                        }
+                        else if(manager.UserId==2)
+                        {
+                            homePage.adminOrNot = "";
+                            homePage.userName = txtUsername.Text;
+                            homePage.ShowDialog();
+                        }
+                        homePage.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        btnLogin.ForeColor = Color.Red;
+                        labError.Visible = true;
+                    }
+                }
             }
+            else
+                MessageBox.Show(Messages.UnknownError);
         }
 
         //Close butonun üstüne gelince
@@ -99,26 +129,26 @@ namespace Login
         //Textbox'a girince ve çıkınca çalışacak kodlar
         private void TxtUsername_Enter(object sender, EventArgs e)
         {
-            if (txtUsername.Text == "Username")
-                txtUsername.Text = "";
+            if (txtUsername.Text == Messages.Username)
+                txtUsername.Text = Messages.Space;
         }
 
         private void TxtUsername_Leave(object sender, EventArgs e)
         {
-            if (txtUsername.Text == "")
-                txtUsername.Text = "Username";
+            if (txtUsername.Text == Messages.Space)
+                txtUsername.Text = Messages.Username;
         }
 
         private void TxtPassword_Enter(object sender, EventArgs e)
         {
-            if (txtPassword.Text == "Password")
-                txtPassword.Text = "";
+            if (txtPassword.Text == Messages.Password)
+                txtPassword.Text = Messages.Space;
         }
 
         private void TxtPassword_Leave(object sender, EventArgs e)
         {
-            if (txtPassword.Text == "")
-                txtPassword.Text = "Password";
+            if (txtPassword.Text == Messages.Space)
+                txtPassword.Text = Messages.Password;
         }
 
         //Panel Hareket Ettirme
@@ -143,6 +173,10 @@ namespace Login
             {
                 this.SetDesktopLocation(MousePosition.X - Mouse_x, MousePosition.Y - Mouse_y);
             }
+        }
+
+        private void LoginPage_Load(object sender, EventArgs e)
+        {
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract.DataAccessLayer
 {
-    public interface IManagerDal:IEntityRepository<Manager>
+    public interface IPersonDal : IEntityRepository<Person>
     {
     }
 }

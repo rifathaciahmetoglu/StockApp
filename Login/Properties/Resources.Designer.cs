@@ -163,6 +163,16 @@ namespace UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_username_321 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_username_321", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Varlık_1 {
             get {
                 object obj = ResourceManager.GetObject("Varlık 1", resourceCulture);

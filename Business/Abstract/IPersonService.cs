@@ -8,8 +8,11 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
-    public interface ICategoryService
+    public interface IPersonService
     {
-        IDataResult<List<Category>> GetAll();
+        IDataResult<List<Person>> GetAll();
+        IResult Add(Person person);
+        IResult Update(Person person);
+        IResult Delete(Person person);
     }
 }

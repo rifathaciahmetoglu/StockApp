@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomePage));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCategory5 = new System.Windows.Forms.Button();
             this.pnlNav = new System.Windows.Forms.Panel();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.btnCategory4 = new System.Windows.Forms.Button();
@@ -46,6 +47,15 @@
             this.panelTop = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panelData = new System.Windows.Forms.Panel();
+            this.employeePanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtEmployeePassword = new System.Windows.Forms.TextBox();
+            this.txtEmployeeUsername = new System.Windows.Forms.TextBox();
+            this.txtEmployeeAdress = new System.Windows.Forms.TextBox();
+            this.txtEmployeeEmail = new System.Windows.Forms.TextBox();
+            this.txtEmployeePhone = new System.Windows.Forms.TextBox();
+            this.txtEmployeeLastName = new System.Windows.Forms.TextBox();
+            this.txtEmployeeName = new System.Windows.Forms.TextBox();
             this.panelChange = new System.Windows.Forms.Panel();
             this.cmbCategories = new System.Windows.Forms.ComboBox();
             this.btnChange = new System.Windows.Forms.Button();
@@ -56,6 +66,7 @@
             this.txtProductId = new System.Windows.Forms.TextBox();
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnManager = new System.Windows.Forms.PictureBox();
             this.btnDelete = new System.Windows.Forms.PictureBox();
             this.btnEdit = new System.Windows.Forms.PictureBox();
             this.btnAdd = new System.Windows.Forms.PictureBox();
@@ -66,8 +77,10 @@
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelData.SuspendLayout();
+            this.employeePanel.SuspendLayout();
             this.panelChange.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).BeginInit();
@@ -76,6 +89,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(34)))), ((int)(((byte)(54)))));
+            this.panel1.Controls.Add(this.btnCategory5);
             this.panel1.Controls.Add(this.pnlNav);
             this.panel1.Controls.Add(this.btnLogOut);
             this.panel1.Controls.Add(this.btnCategory4);
@@ -88,6 +102,25 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(186, 577);
             this.panel1.TabIndex = 0;
+            // 
+            // btnCategory5
+            // 
+            this.btnCategory5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCategory5.FlatAppearance.BorderSize = 0;
+            this.btnCategory5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCategory5.Font = new System.Drawing.Font("Nirmala UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCategory5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(126)))), ((int)(((byte)(249)))));
+            this.btnCategory5.Image = ((System.Drawing.Image)(resources.GetObject("btnCategory5.Image")));
+            this.btnCategory5.Location = new System.Drawing.Point(0, 320);
+            this.btnCategory5.Name = "btnCategory5";
+            this.btnCategory5.Size = new System.Drawing.Size(186, 42);
+            this.btnCategory5.TabIndex = 3;
+            this.btnCategory5.TabStop = false;
+            this.btnCategory5.Text = "     Kullanıcılar";
+            this.btnCategory5.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnCategory5.UseVisualStyleBackColor = true;
+            this.btnCategory5.Visible = false;
+            this.btnCategory5.Click += new System.EventHandler(this.btnCategory5_Click);
             // 
             // pnlNav
             // 
@@ -208,22 +241,25 @@
             this.labelSomeUser.AutoSize = true;
             this.labelSomeUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelSomeUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(161)))), ((int)(((byte)(178)))));
-            this.labelSomeUser.Location = new System.Drawing.Point(19, 128);
+            this.labelSomeUser.Location = new System.Drawing.Point(67, 126);
             this.labelSomeUser.Name = "labelSomeUser";
-            this.labelSomeUser.Size = new System.Drawing.Size(144, 15);
+            this.labelSomeUser.Size = new System.Drawing.Size(47, 15);
             this.labelSomeUser.TabIndex = 2;
-            this.labelSomeUser.Text = "Some User Text Here";
+            this.labelSomeUser.Text = "admin";
+            this.labelSomeUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelSomeUser.Click += new System.EventHandler(this.labelSomeUser_Click);
             // 
             // labelUsername
             // 
             this.labelUsername.AutoSize = true;
             this.labelUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.labelUsername.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.labelUsername.Location = new System.Drawing.Point(40, 99);
+            this.labelUsername.Location = new System.Drawing.Point(67, 99);
             this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(103, 20);
+            this.labelUsername.Size = new System.Drawing.Size(55, 20);
             this.labelUsername.TabIndex = 1;
-            this.labelUsername.Text = "User Name";
+            this.labelUsername.Text = "User ";
+            this.labelUsername.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
@@ -308,6 +344,7 @@
             // 
             // panelData
             // 
+            this.panelData.Controls.Add(this.employeePanel);
             this.panelData.Controls.Add(this.panelChange);
             this.panelData.Controls.Add(this.dataGridView1);
             this.panelData.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -315,6 +352,148 @@
             this.panelData.Name = "panelData";
             this.panelData.Size = new System.Drawing.Size(765, 522);
             this.panelData.TabIndex = 7;
+            // 
+            // employeePanel
+            // 
+            this.employeePanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(34)))), ((int)(((byte)(54)))));
+            this.employeePanel.Controls.Add(this.button1);
+            this.employeePanel.Controls.Add(this.txtEmployeePassword);
+            this.employeePanel.Controls.Add(this.txtEmployeeUsername);
+            this.employeePanel.Controls.Add(this.txtEmployeeAdress);
+            this.employeePanel.Controls.Add(this.txtEmployeeEmail);
+            this.employeePanel.Controls.Add(this.txtEmployeePhone);
+            this.employeePanel.Controls.Add(this.txtEmployeeLastName);
+            this.employeePanel.Controls.Add(this.txtEmployeeName);
+            this.employeePanel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.employeePanel.Location = new System.Drawing.Point(251, 0);
+            this.employeePanel.Name = "employeePanel";
+            this.employeePanel.Size = new System.Drawing.Size(255, 522);
+            this.employeePanel.TabIndex = 10;
+            this.employeePanel.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
+            this.button1.Location = new System.Drawing.Point(33, 437);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(162, 44);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Ekle";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // txtEmployeePassword
+            // 
+            this.txtEmployeePassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmployeePassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(79)))), ((int)(((byte)(99)))));
+            this.txtEmployeePassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtEmployeePassword.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtEmployeePassword.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtEmployeePassword.Location = new System.Drawing.Point(14, 379);
+            this.txtEmployeePassword.Multiline = true;
+            this.txtEmployeePassword.Name = "txtEmployeePassword";
+            this.txtEmployeePassword.Size = new System.Drawing.Size(223, 25);
+            this.txtEmployeePassword.TabIndex = 6;
+            this.txtEmployeePassword.Text = "Şifre";
+            this.txtEmployeePassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtEmployeeUsername
+            // 
+            this.txtEmployeeUsername.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmployeeUsername.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(79)))), ((int)(((byte)(99)))));
+            this.txtEmployeeUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtEmployeeUsername.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtEmployeeUsername.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtEmployeeUsername.Location = new System.Drawing.Point(14, 321);
+            this.txtEmployeeUsername.Multiline = true;
+            this.txtEmployeeUsername.Name = "txtEmployeeUsername";
+            this.txtEmployeeUsername.Size = new System.Drawing.Size(223, 25);
+            this.txtEmployeeUsername.TabIndex = 6;
+            this.txtEmployeeUsername.Text = "Kullanıcı Adı";
+            this.txtEmployeeUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtEmployeeAdress
+            // 
+            this.txtEmployeeAdress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmployeeAdress.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(79)))), ((int)(((byte)(99)))));
+            this.txtEmployeeAdress.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtEmployeeAdress.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtEmployeeAdress.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtEmployeeAdress.Location = new System.Drawing.Point(14, 263);
+            this.txtEmployeeAdress.Multiline = true;
+            this.txtEmployeeAdress.Name = "txtEmployeeAdress";
+            this.txtEmployeeAdress.Size = new System.Drawing.Size(223, 25);
+            this.txtEmployeeAdress.TabIndex = 6;
+            this.txtEmployeeAdress.Text = "Adres";
+            this.txtEmployeeAdress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtEmployeeEmail
+            // 
+            this.txtEmployeeEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmployeeEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(79)))), ((int)(((byte)(99)))));
+            this.txtEmployeeEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtEmployeeEmail.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtEmployeeEmail.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtEmployeeEmail.Location = new System.Drawing.Point(14, 205);
+            this.txtEmployeeEmail.Multiline = true;
+            this.txtEmployeeEmail.Name = "txtEmployeeEmail";
+            this.txtEmployeeEmail.Size = new System.Drawing.Size(223, 25);
+            this.txtEmployeeEmail.TabIndex = 5;
+            this.txtEmployeeEmail.Text = "E-mail";
+            this.txtEmployeeEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtEmployeePhone
+            // 
+            this.txtEmployeePhone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmployeePhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(79)))), ((int)(((byte)(99)))));
+            this.txtEmployeePhone.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtEmployeePhone.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtEmployeePhone.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtEmployeePhone.Location = new System.Drawing.Point(14, 147);
+            this.txtEmployeePhone.Multiline = true;
+            this.txtEmployeePhone.Name = "txtEmployeePhone";
+            this.txtEmployeePhone.Size = new System.Drawing.Size(223, 25);
+            this.txtEmployeePhone.TabIndex = 4;
+            this.txtEmployeePhone.Text = "Telefon Numarası";
+            this.txtEmployeePhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtEmployeeLastName
+            // 
+            this.txtEmployeeLastName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmployeeLastName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(79)))), ((int)(((byte)(99)))));
+            this.txtEmployeeLastName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtEmployeeLastName.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtEmployeeLastName.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtEmployeeLastName.Location = new System.Drawing.Point(14, 89);
+            this.txtEmployeeLastName.Multiline = true;
+            this.txtEmployeeLastName.Name = "txtEmployeeLastName";
+            this.txtEmployeeLastName.Size = new System.Drawing.Size(223, 25);
+            this.txtEmployeeLastName.TabIndex = 3;
+            this.txtEmployeeLastName.Text = "Soyadı";
+            this.txtEmployeeLastName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // txtEmployeeName
+            // 
+            this.txtEmployeeName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmployeeName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(79)))), ((int)(((byte)(99)))));
+            this.txtEmployeeName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtEmployeeName.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtEmployeeName.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtEmployeeName.Location = new System.Drawing.Point(14, 29);
+            this.txtEmployeeName.Multiline = true;
+            this.txtEmployeeName.Name = "txtEmployeeName";
+            this.txtEmployeeName.Size = new System.Drawing.Size(223, 27);
+            this.txtEmployeeName.TabIndex = 2;
+            this.txtEmployeeName.Text = "Adı";
+            this.txtEmployeeName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panelChange
             // 
@@ -355,7 +534,7 @@
             this.btnChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChange.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnChange.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.btnChange.Location = new System.Drawing.Point(21, 415);
+            this.btnChange.Location = new System.Drawing.Point(21, 414);
             this.btnChange.Name = "btnChange";
             this.btnChange.Size = new System.Drawing.Size(162, 44);
             this.btnChange.TabIndex = 1;
@@ -371,7 +550,7 @@
             this.txtProductDesc.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtProductDesc.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtProductDesc.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtProductDesc.Location = new System.Drawing.Point(21, 363);
+            this.txtProductDesc.Location = new System.Drawing.Point(21, 361);
             this.txtProductDesc.Multiline = true;
             this.txtProductDesc.Name = "txtProductDesc";
             this.txtProductDesc.Size = new System.Drawing.Size(168, 25);
@@ -407,7 +586,7 @@
             this.txtProductCode.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtProductCode.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtProductCode.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtProductCode.Location = new System.Drawing.Point(21, 252);
+            this.txtProductCode.Location = new System.Drawing.Point(21, 255);
             this.txtProductCode.Multiline = true;
             this.txtProductCode.Name = "txtProductCode";
             this.txtProductCode.Size = new System.Drawing.Size(168, 25);
@@ -425,7 +604,7 @@
             this.txtUnitsInStock.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUnitsInStock.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtUnitsInStock.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtUnitsInStock.Location = new System.Drawing.Point(21, 199);
+            this.txtUnitsInStock.Location = new System.Drawing.Point(21, 202);
             this.txtUnitsInStock.Multiline = true;
             this.txtUnitsInStock.Name = "txtUnitsInStock";
             this.txtUnitsInStock.Size = new System.Drawing.Size(168, 25);
@@ -443,7 +622,7 @@
             this.txtProductId.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtProductId.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtProductId.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtProductId.Location = new System.Drawing.Point(21, 97);
+            this.txtProductId.Location = new System.Drawing.Point(21, 92);
             this.txtProductId.Multiline = true;
             this.txtProductId.Name = "txtProductId";
             this.txtProductId.ReadOnly = true;
@@ -463,7 +642,7 @@
             this.txtProductName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtProductName.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtProductName.ForeColor = System.Drawing.SystemColors.ScrollBar;
-            this.txtProductName.Location = new System.Drawing.Point(21, 148);
+            this.txtProductName.Location = new System.Drawing.Point(21, 147);
             this.txtProductName.Multiline = true;
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(168, 27);
@@ -475,6 +654,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.btnManager);
             this.panel3.Controls.Add(this.btnDelete);
             this.panel3.Controls.Add(this.btnEdit);
             this.panel3.Controls.Add(this.btnAdd);
@@ -483,6 +663,17 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(53, 522);
             this.panel3.TabIndex = 8;
+            // 
+            // btnManager
+            // 
+            this.btnManager.Image = global::UI.Properties.Resources.icons8_username_321;
+            this.btnManager.Location = new System.Drawing.Point(9, 223);
+            this.btnManager.Name = "btnManager";
+            this.btnManager.Size = new System.Drawing.Size(32, 32);
+            this.btnManager.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.btnManager.TabIndex = 3;
+            this.btnManager.TabStop = false;
+            this.btnManager.Click += new System.EventHandler(this.btnManager_Click);
             // 
             // btnDelete
             // 
@@ -541,10 +732,13 @@
             this.panelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panelData.ResumeLayout(false);
+            this.employeePanel.ResumeLayout(false);
+            this.employeePanel.PerformLayout();
             this.panelChange.ResumeLayout(false);
             this.panelChange.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnDelete)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnAdd)).EndInit();
@@ -584,5 +778,16 @@
         private Button btnChange;
         private ComboBox cmbCategories;
         private TextBox txtProductId;
+        private Button btnCategory5;
+        private PictureBox btnManager;
+        private Panel employeePanel;
+        private Button button1;
+        private TextBox txtEmployeeAdress;
+        private TextBox txtEmployeeEmail;
+        private TextBox txtEmployeePhone;
+        private TextBox txtEmployeeLastName;
+        private TextBox txtEmployeeName;
+        private TextBox txtEmployeePassword;
+        private TextBox txtEmployeeUsername;
     }
 }

@@ -38,6 +38,7 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.picClose = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.labError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLock)).BeginInit();
@@ -131,7 +132,7 @@
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.btnLogin.Location = new System.Drawing.Point(40, 381);
+            this.btnLogin.Location = new System.Drawing.Point(40, 365);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(268, 55);
             this.btnLogin.TabIndex = 7;
@@ -164,12 +165,25 @@
             this.panel3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Panel3_MouseMove);
             this.panel3.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Panel3_MouseUp);
             // 
+            // labError
+            // 
+            this.labError.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.labError.Location = new System.Drawing.Point(47, 431);
+            this.labError.Name = "labError";
+            this.labError.Size = new System.Drawing.Size(255, 59);
+            this.labError.TabIndex = 10;
+            this.labError.Text = "Giriş Başarısız. Lütfen kullanıcı adı ve şifrenizi kontrol ediniz.";
+            this.labError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labError.UseMnemonic = false;
+            this.labError.Visible = false;
+            // 
             // LoginPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(350, 500);
+            this.Controls.Add(this.labError);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.panel2);
@@ -183,6 +197,7 @@
             this.Name = "LoginPage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.LoginPage_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picUser)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLock)).EndInit();
@@ -205,5 +220,6 @@
         private Button btnLogin;
         private PictureBox picClose;
         private Panel panel3;
+        private Label labError;
     }
 }

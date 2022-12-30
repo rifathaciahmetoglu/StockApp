@@ -21,6 +21,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<Product>? products { get; set; }
         public DbSet<Category>? categories { get; set; }
         public DbSet<Employee>? employees { get; set; }
-        public DbSet<Manager>? managers { get; set; }
+        public DbSet<Person>? persons { get; set; }
+
     }
 }

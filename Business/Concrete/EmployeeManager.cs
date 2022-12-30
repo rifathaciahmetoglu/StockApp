@@ -1,6 +1,10 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract.DataAccessLayer;
+using DataAccess.Concrete.EntityFramework.DataAccessLayer;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,24 +21,34 @@ namespace Business.Concrete
             _employeeDal=employeeDal;
         }
 
-        public void Add(Employee employee)
+        public IResult Add(Employee employee)
         {
             _employeeDal.Add(employee);
+
+            return new SuccessResult(Messages.EmployeeAdded);
         }
 
-        public void Delete(Employee employee)
+        public IResult Delete(Employee employee)
         {
             _employeeDal.Delete(employee);
+            return new SuccessResult(Messages.EmployeeDeleted);
         }
 
-        public List<Employee> GetAll()
+        public IDataResult<List<Employee>> GetAll()
         {
-            return _employeeDal.GetAll();
+            return new DataResult<List<Employee>>(_employeeDal.GetAll(), true, Messages.EmployeesListed);
         }
 
-        public void Update(Employee employee)
+        public IDataResult<List<UserDetailDto>> GetUserDetails()
+        {
+            return new SuccessDataResult<List<UserDetailDto>>(_employeeDal.GetUserDetails());
+        }
+
+        public IResult Update(Employee employee)
         {
             _employeeDal.Update(employee);
+            return new SuccessResult(Messages.EmployeeUpdated);
         }
+
     }
 }
