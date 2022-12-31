@@ -33,6 +33,10 @@ namespace Business.Constants
         //Category Messages
         public static string CategoryListed = "Kategoriler Listelendi";
 
+        //Log Messages
+        public static string LogListed = "Loglar Listelendi";
+        public static string LogAdded = "Log Eklendi";
+
         //Other Messages
         public static string MaintenanceTime = "Bakım zamanı";
         public static string UnknownError = "Bilinmeyen bir hata ile karşılaşıldı";
@@ -57,5 +61,6 @@ namespace Business.Constants
         //Button Messages
         public static string Add = "EKLE";
         public static string Update = "Güncelle";
+
     }
 }

@@ -22,6 +22,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<Category>? categories { get; set; }
         public DbSet<Employee>? employees { get; set; }
         public DbSet<Person>? persons { get; set; }
+        public DbSet<Log> logs { get; set; }
 
     }
 }

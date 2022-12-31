@@ -24,7 +24,6 @@ namespace Login
             InitializeComponent();
         }
         public string Admin;
-        string User;
         //Login butonuna tıklayınca
         private void BtnLogin_Click(object sender, EventArgs e)
         {
@@ -42,13 +41,15 @@ namespace Login
                         if (manager.UserId==1)
                         {
                             homePage.adminOrNot ="Admin";
-                            homePage.userName= txtUsername.Text;
+                            homePage.userName = manager.Username;
+                            homePage.PersonNo = manager.PersonId.ToString();
                             homePage.ShowDialog();
 
                         }
                         else if(manager.UserId==2)
                         {
                             homePage.adminOrNot = "";
+                            homePage.PersonNo = manager.Username;
                             homePage.userName = txtUsername.Text;
                             homePage.ShowDialog();
                         }

@@ -49,6 +49,7 @@ namespace UI
 
         //UI DESIGN
         ProductManager productManager = new(new EfProductDal());
+        LogManager logManager = new(new EfLogDal());
         private void BtnCategory1_Click(object sender, EventArgs e)
         {
             //UI
@@ -99,14 +100,15 @@ namespace UI
         }
         private void btnCategory5_Click(object sender, EventArgs e)
         {
-            EmployeeManager employeeManager=new(new EfEmployeeDal());
+            PersonManager personManager=new(new EfPersonDal());
             //UI
             pnlNav.Height = btnCategory4.Height;
             pnlNav.Top = btnCategory4.Top;
             btnCategory4.BackColor = Color.FromArgb(46, 51, 73);
 
             //Commands
-            dataGridView1.DataSource = employeeManager.GetUserDetails().Data;
+            dataGridView1.DataSource = personManager.GetAll().Data;
+            this.dataGridView1.Columns[1].Visible = false;
             dataGridView1.ClearSelection();
         }
         //DRAG FORM
@@ -189,6 +191,7 @@ namespace UI
         //Form Açılış
         public string adminOrNot;
         public string userName;
+        public string PersonNo;
         CategoryManager categoryManager = new(new EfCategoryDal());
         private void HomePage_Load(object sender, EventArgs e)
         {
@@ -197,12 +200,12 @@ namespace UI
             if (labelSomeUser.Text=="Admin")
             {
                 btnCategory5.Visible = true;
-                btnManager.Visible = true;
+                btnLog.Visible = true;
             }
             else
             {
                 btnCategory5.Visible = false;
-                btnManager.Visible = false;
+                btnLog.Visible = false;
             }
 
             var result = categoryManager.GetAll();
@@ -260,6 +263,21 @@ namespace UI
         {
             Application.Exit();
         }
+        //boyut ayarlama butonu
+        private void btnSetSize_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Normal)
+                this.WindowState = FormWindowState.Maximized;
+            else
+                this.WindowState = FormWindowState.Normal;
+        }
+        //küçültme butonu
+        private void btnShrink_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+
         //Ürün ekleme Butonu
         private void BtnAdd_Click(object sender, EventArgs e)
         {
@@ -320,15 +338,23 @@ namespace UI
         {
             if (sayi==0)
             {
-            productManager.Add(new Product
-            {
-                CategoryId = index,
-                ProductName = txtProductName.Text,
-                UnitsInStock = Convert.ToInt16(txtUnitsInStock.Text),
-                ProductCode = txtProductCode.Text,
-                ProductBarcode = txtProductBarcode.Text,
-                ProductDescription = txtProductDesc.Text
-            }) ;
+                productManager.Add(new Product
+                {
+                    CategoryId = index,
+                    ProductName = txtProductName.Text,
+                    UnitsInStock = Convert.ToInt16(txtUnitsInStock.Text),
+                    ProductCode = txtProductCode.Text,
+                    ProductBarcode = txtProductBarcode.Text,
+                    ProductDescription = txtProductDesc.Text
+                });
+                //LOG EKLE
+                logManager.Add(new Log
+                {
+                    Username = userName,
+                    Description = txtUnitsInStock.Text + " tane " + txtProductName.Text + " Sisteme Eklendi",
+                    Date = DateTime.Now.ToString()
+                });
+
                 PanelChangeReset();
                 panelChange.Visible = false;
                 dataGridView1.DataSource = productManager.GetAllByCategoryId(index).Data;
@@ -345,6 +371,15 @@ namespace UI
                     ProductBarcode = txtProductBarcode.Text,
                     ProductDescription = txtProductDesc.Text
                 });
+
+                //LOG EKLE
+                logManager.Add(new Log
+                {
+                    Username = userName,
+                    Description = txtProductId.Text + " numaralı " + txtProductName.Text + " Güncellendi",
+                    Date = DateTime.Now.ToString()
+                });
+
                 PanelChangeReset();
                 panelChange.Visible = false;
                 dataGridView1.DataSource = productManager.GetAllByCategoryId(index).Data;
@@ -366,20 +401,14 @@ namespace UI
         {
             productManager.Delete(new Product { ProductId = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value) });
             dataGridView1.DataSource = productManager.GetAllByCategoryId(index).Data;
-            
-        }
-        //Kişi Ekleme Butonu
-        public int kisi;
-        private void btnManager_Click(object sender, EventArgs e)
-        {
-            if (employeePanel.Visible == true)
-                employeePanel.Visible = false;
-            else
-                employeePanel.Visible = true;
-        }
-         
-        private void TxtSearch_TextChanged(object sender, EventArgs e)
-        {
+           
+            //LOG EKLE
+            logManager.Add(new Log
+            {
+                Username = userName,
+                Description = "Ürün Silindi",
+                Date = DateTime.Now.ToString()
+            });
         }
 
         private void labelSomeUser_Click(object sender, EventArgs e)
@@ -387,6 +416,16 @@ namespace UI
 
         }
 
+        private void btnLog_Click(object sender, EventArgs e)
+        {
+            //UI
+            pnlNav.Height = btnCategory4.Height;
+            pnlNav.Top = btnCategory4.Top;
+            btnCategory4.BackColor = Color.FromArgb(46, 51, 73);
 
+            //Commands
+            dataGridView1.DataSource = logManager.GetAll().Data;
+            dataGridView1.ClearSelection();
+        }
     }
 }
