@@ -1,5 +1,8 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract.DataAccessLayer;
 using Entities.Concrete;
@@ -22,11 +25,13 @@ namespace Business.Concrete
             _productDal = productDal;
         }
 
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
-            if (product.ProductName.Length < 2)
+            IResult error=BusinessRules.Run(CheckIfProductNameExists(product.ProductName));
+            if (error!=null)
             {
-                return new ErrorResult(Messages.ProductNameInvalid);
+                return error;
             }
             _productDal.Add(product);
             return new SuccessResult(Messages.ProductAdded);
@@ -48,10 +53,22 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == categoryId));
         }
 
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Update(Product product)
         {
             _productDal.Update(product);
             return new SuccessResult(Messages.ProductUpdated);
+        }
+
+        //Business Commands
+        private IResult CheckIfProductNameExists(string productName)
+        {
+            var result = _productDal.GetAll(p => p.ProductName == productName).Any();//kurala uygun kayıt var mı yok mu demek
+            if (result)
+            {
+                return new ErrorResult(Messages.ProductNameAlReadyExists);
+            }
+            return new SuccessResult();
         }
     }
 }

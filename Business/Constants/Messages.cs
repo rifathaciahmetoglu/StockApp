@@ -17,6 +17,7 @@ namespace Business.Constants
         public static string ProductsListed = "Ürünler Listelendi";
         public static string ProductDeleted = "Ürün Silindi";
         public static string ProductUpdated = "Ürün Bilgileri Güncellendi";
+        internal static string ProductNameAlReadyExists="Bu isimde bir ürün zaten var";
 
         //Person
         public static string PersonAdded = "Kişi Eklendi";
