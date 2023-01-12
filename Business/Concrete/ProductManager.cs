@@ -28,8 +28,8 @@ namespace Business.Concrete
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
-            IResult error=BusinessRules.Run(CheckIfProductNameExists(product.ProductName));
-            if (error!=null)
+            IResult error = BusinessRules.Run(CheckIfProductNameExists(product.ProductName));
+            if (error != null)
             {
                 return error;
             }
@@ -45,12 +45,17 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetAll()
         {
-            return new DataResult<List<Product>>(_productDal.GetAll(),true,Messages.ProductsListed);
+            return new DataResult<List<Product>>(_productDal.GetAll(), true, Messages.ProductsListed);
         }
 
         public IDataResult<List<Product>> GetAllByCategoryId(int categoryId)
         {
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == categoryId));
+        }
+
+        public IResult Search(string text)
+        {
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.ProductName.Contains(text)));
         }
 
         [ValidationAspect(typeof(ProductValidator))]

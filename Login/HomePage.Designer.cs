@@ -45,6 +45,7 @@
             this.labelHome = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.PictureBox();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnSetSize = new System.Windows.Forms.PictureBox();
             this.btnShrink = new System.Windows.Forms.PictureBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -308,6 +309,7 @@
             // 
             // panelTop
             // 
+            this.panelTop.Controls.Add(this.txtSearch);
             this.panelTop.Controls.Add(this.btnSetSize);
             this.panelTop.Controls.Add(this.btnShrink);
             this.panelTop.Controls.Add(this.labelHome);
@@ -318,6 +320,26 @@
             this.panelTop.Size = new System.Drawing.Size(765, 55);
             this.panelTop.TabIndex = 4;
             this.panelTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelTop_MouseDown);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(74)))), ((int)(((byte)(79)))), ((int)(((byte)(99)))));
+            this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSearch.Font = new System.Drawing.Font("Bahnschrift Condensed", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtSearch.ForeColor = System.Drawing.SystemColors.ScrollBar;
+            this.txtSearch.Location = new System.Drawing.Point(288, 19);
+            this.txtSearch.MaximumSize = new System.Drawing.Size(600, 24);
+            this.txtSearch.MinimumSize = new System.Drawing.Size(219, 24);
+            this.txtSearch.Multiline = true;
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(265, 24);
+            this.txtSearch.TabIndex = 100;
+            this.txtSearch.TabStop = false;
+            this.txtSearch.Text = "Aranacak ürünün adını giriniz...";
+            this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged_1);
+            this.txtSearch.Enter += new System.EventHandler(this.txtSearch_Enter);
+            this.txtSearch.Leave += new System.EventHandler(this.txtSearch_Leave);
             // 
             // btnSetSize
             // 
@@ -644,5 +666,6 @@
         private Button btnLog;
         private PictureBox btnSetSize;
         private PictureBox btnShrink;
+        private TextBox txtSearch;
     }
 }

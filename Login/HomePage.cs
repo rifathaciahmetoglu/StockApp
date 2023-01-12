@@ -14,6 +14,8 @@ using Entities.Concrete;
 using DataAccess.Abstract.DataAccessLayer;
 using Business.Constants;
 using Login;
+using DataAccess.Concrete.EntityFramework.Context;
+using Entities.DTOs;
 
 namespace UI
 {
@@ -48,8 +50,24 @@ namespace UI
         }
 
         //UI DESIGN
+        DataGridViewCellStyle style = new DataGridViewCellStyle();
         ProductManager productManager = new(new EfProductDal());
         LogManager logManager = new(new EfLogDal());
+
+        public void CheckIfUnitsInStock(int amount)
+        {
+            for (int i = 0; i < dataGridView1.Rows.Count ; i++)
+            {
+                DataGridViewCellStyle renk = new DataGridViewCellStyle();
+                    if (Convert.ToInt32(dataGridView1.Rows[i].Cells[3].Value)<amount)
+                    {
+                    renk.BackColor = Color.Red;
+                    renk.ForeColor = Color.White;
+
+                    }
+                dataGridView1.Rows[i].DefaultCellStyle = renk;
+            }
+        }
         private void BtnCategory1_Click(object sender, EventArgs e)
         {
             //UI
@@ -61,6 +79,7 @@ namespace UI
             //Commands
             dataGridView1.DataSource = productManager.GetAllByCategoryId(1).Data;       
             dataGridView1.ClearSelection();
+            CheckIfUnitsInStock(100);
         }
         
         private void BtnCategory2_Click(object sender, EventArgs e)
@@ -73,6 +92,7 @@ namespace UI
             //Commands
             dataGridView1.DataSource=productManager.GetAllByCategoryId(2).Data;
             dataGridView1.ClearSelection();
+            CheckIfUnitsInStock(40);
         }
 
         private void BtnCategory3_Click(object sender, EventArgs e)
@@ -85,6 +105,7 @@ namespace UI
             //Commands
             dataGridView1.DataSource=productManager.GetAllByCategoryId(3).Data;
             dataGridView1.ClearSelection();
+            CheckIfUnitsInStock(20);
         }
 
         private void BtnCategory4_Click(object sender, EventArgs e)
@@ -97,6 +118,7 @@ namespace UI
             //Commands
             dataGridView1.DataSource=productManager.GetAllByCategoryId(4).Data;
             dataGridView1.ClearSelection();
+            CheckIfUnitsInStock(100);
         }
         private void btnCategory5_Click(object sender, EventArgs e)
         {
@@ -110,6 +132,7 @@ namespace UI
             dataGridView1.DataSource = personManager.GetAll().Data;
             this.dataGridView1.Columns[1].Visible = false;
             dataGridView1.ClearSelection();
+
         }
         //DRAG FORM
 
@@ -126,6 +149,17 @@ namespace UI
         }
 
         //panelChange textbox design
+        private void txtSearch_Enter(object sender, EventArgs e)
+        {
+            if (txtSearch.Text == Messages.SearchName)
+                txtSearch.Text = Messages.Space;
+        }
+        private void txtSearch_Leave(object sender, EventArgs e)
+        {
+            if (txtProductName.Text == Messages.Space)
+                txtProductName.Text = Messages.SearchName;
+        }
+
         private void TxtProductName_Enter(object sender, EventArgs e)
         {
             if (txtProductName.Text == Messages.ProductName)
@@ -219,6 +253,8 @@ namespace UI
             else
                 MessageBox.Show(Messages.UnknownError);
 
+            
+            
         }
         //Çıkış Yap butonu
         private void BtnLogOut_Click(object sender, EventArgs e)
@@ -406,7 +442,7 @@ namespace UI
             logManager.Add(new Log
             {
                 Username = userName,
-                Description = "Ürün Silindi",
+                Description = dataGridView1.CurrentRow.Cells[2].Value + " Silindi",
                 Date = DateTime.Now.ToString()
             });
         }
@@ -427,5 +463,20 @@ namespace UI
             dataGridView1.DataSource = logManager.GetAll().Data;
             dataGridView1.ClearSelection();
         }
+
+        //Search button
+        private void txtSearch_TextChanged_1(object sender, EventArgs e)
+        {
+            string search = txtSearch.Text;
+            using (StockPostgresContext context = new())
+            {
+                var result = from item in context.products
+                             where item.ProductName.Contains(search)
+                             select item;
+                dataGridView1.DataSource = result.ToList();
+            }
+        }
+
+
     }
 }

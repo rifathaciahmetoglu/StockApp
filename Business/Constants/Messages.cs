@@ -62,6 +62,7 @@ namespace Business.Constants
         //Button Messages
         public static string Add = "EKLE";
         public static string Update = "Güncelle";
-
+        internal static string UnitsInStockError="Ürün adedi düşük!";
+        public static string SearchName= "Aranacak ürünün adını giriniz...";
     }
 }
