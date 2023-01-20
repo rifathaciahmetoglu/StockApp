@@ -78,7 +78,7 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(230, 23);
             this.txtUsername.TabIndex = 2;
-            this.txtUsername.Text = "Username";
+            this.txtUsername.Text = "Kullanıcı Adı";
             this.txtUsername.Click += new System.EventHandler(this.TxtUsername_Click);
             this.txtUsername.TextChanged += new System.EventHandler(this.TxtUsername_TextChanged);
             this.txtUsername.Enter += new System.EventHandler(this.TxtUsername_Enter);
@@ -110,7 +110,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(230, 23);
             this.txtPassword.TabIndex = 5;
-            this.txtPassword.Text = "Password";
+            this.txtPassword.Text = "Şifre";
             this.txtPassword.Click += new System.EventHandler(this.TxtPassword_Click);
             this.txtPassword.TextChanged += new System.EventHandler(this.TxtPassword_TextChanged);
             this.txtPassword.Enter += new System.EventHandler(this.TxtPassword_Enter);
@@ -136,7 +136,7 @@
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(268, 55);
             this.btnLogin.TabIndex = 7;
-            this.btnLogin.Text = "Login";
+            this.btnLogin.Text = "Giriş Yap";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
             // 

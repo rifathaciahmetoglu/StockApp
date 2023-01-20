@@ -11,6 +11,7 @@ namespace DataAccess.Abstract.DataAccessLayer
 {
     public interface IEmployeeDal:IEntityRepository<Employee>
     {
+        void Add(UserDetailDto userDetailDto);
         List<UserDetailDto> GetUserDetails();
     }
 }

@@ -16,5 +16,6 @@ namespace Business.Abstract
         IResult Update(Employee employee);
         IResult Delete(Employee employee);
         IDataResult<List<UserDetailDto>> GetUserDetails();
+        IResult AddUser(UserDetailDto userDetailDto);
     }
 }

@@ -9,7 +9,7 @@ namespace Business.Constants
     //Static verince sürekli new'lemekten kurtuluyoruz.
     public static class Messages
     {
-        
+
 
         //Product Messages
         public static string ProductAdded = "Ürün Eklendi";
@@ -17,7 +17,7 @@ namespace Business.Constants
         public static string ProductsListed = "Ürünler Listelendi";
         public static string ProductDeleted = "Ürün Silindi";
         public static string ProductUpdated = "Ürün Bilgileri Güncellendi";
-        internal static string ProductNameAlReadyExists="Bu isimde bir ürün zaten var";
+        internal static string ProductNameAlReadyExists = "Bu isimde bir ürün zaten var";
 
         //Person
         public static string PersonAdded = "Kişi Eklendi";
@@ -62,7 +62,17 @@ namespace Business.Constants
         //Button Messages
         public static string Add = "EKLE";
         public static string Update = "Güncelle";
-        internal static string UnitsInStockError="Ürün adedi düşük!";
-        public static string SearchName= "Aranacak ürünün adını giriniz...";
+        internal static string UnitsInStockError = "Ürün adedi düşük!";
+        public static string SearchName = "Aranacak ürünün adını giriniz...";
+
+        //Person
+        public static string PersonName = "Adı";
+        public static string PersonLastName = "Soyadı";
+        public static string PersonPhone = "Telefon Numarası";
+        public static string PersonMail = "E-mail";
+        public static string PersonAdress = "Adress";
+
+
+        public static string LoginSucces="True";
     }
 }

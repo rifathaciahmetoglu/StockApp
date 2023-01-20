@@ -28,6 +28,13 @@ namespace Business.Concrete
             return new SuccessResult(Messages.EmployeeAdded);
         }
 
+        public IResult AddUser(UserDetailDto userDetailDto)
+        {
+            _employeeDal.Add(userDetailDto);
+
+            return new SuccessResult(Messages.LoginSucces);
+        }
+
         public IResult Delete(Employee employee)
         {
             _employeeDal.Delete(employee);

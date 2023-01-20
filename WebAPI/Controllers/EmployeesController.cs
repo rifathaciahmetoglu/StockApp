@@ -23,5 +23,15 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+        [HttpPost("login")]
+        public IActionResult Login()
+        {
+            var result = _employeeService.GetUserDetails();
+            if (result.Succes)
+            {
+                return Ok(result.Succes);
+            }
+            return BadRequest(result.Succes);
+        }
     }
 }

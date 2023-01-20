@@ -43,86 +43,103 @@ namespace UI
             btnCategory1.BackColor = Color.FromArgb(46, 51, 73);
 
             //Form
-            this.Text=string.Empty;
+            this.Text = string.Empty;
             this.ControlBox = false;
-            this.DoubleBuffered= true;
-            /*this.MaximizedBounds=Screen.FromHandle(this.Handle).WorkingArea*/; //Tam ekran olunca köşelerde boşluk bırak
+            this.DoubleBuffered = true;
+            /*this.MaximizedBounds=Screen.FromHandle(this.Handle).WorkingArea*/
+            ; //Tam ekran olunca köşelerde boşluk bırak
         }
 
         //UI DESIGN
         DataGridViewCellStyle style = new DataGridViewCellStyle();
         ProductManager productManager = new(new EfProductDal());
         LogManager logManager = new(new EfLogDal());
+        PersonManager personManager = new(new EfPersonDal());
 
         public void CheckIfUnitsInStock(int amount)
         {
-            for (int i = 0; i < dataGridView1.Rows.Count ; i++)
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 DataGridViewCellStyle renk = new DataGridViewCellStyle();
-                    if (Convert.ToInt32(dataGridView1.Rows[i].Cells[3].Value)<amount)
-                    {
+                if (Convert.ToInt32(dataGridView1.Rows[i].Cells[3].Value) < amount)
+                {
                     renk.BackColor = Color.Red;
                     renk.ForeColor = Color.White;
 
-                    }
+                }
                 dataGridView1.Rows[i].DefaultCellStyle = renk;
             }
         }
         private void BtnCategory1_Click(object sender, EventArgs e)
         {
+            ProductSidePanel.Visible = true;
+            PersonSidePanel.Visible = false;
+            HomePageOpenPanel.Visible = false;
             //UI
             pnlNav.Height = btnCategory1.Height;
-            pnlNav.Top=btnCategory1.Top;
-            pnlNav.Left=btnCategory1.Left;
+            pnlNav.Top = btnCategory1.Top;
+            pnlNav.Left = btnCategory1.Left;
             btnCategory1.BackColor = Color.FromArgb(46, 51, 73);
 
             //Commands
-            dataGridView1.DataSource = productManager.GetAllByCategoryId(1).Data;       
+            dataGridView1.DataSource = productManager.GetAllByCategoryId(1).Data;
             dataGridView1.ClearSelection();
             CheckIfUnitsInStock(100);
         }
-        
+
         private void BtnCategory2_Click(object sender, EventArgs e)
         {
+            ProductSidePanel.Visible = true;
+            PersonSidePanel.Visible = false;
+            HomePageOpenPanel.Visible = false;
             //UI
-            pnlNav.Height=btnCategory2.Height;
-            pnlNav.Top=btnCategory2.Top;
+            pnlNav.Height = btnCategory2.Height;
+            pnlNav.Top = btnCategory2.Top;
             btnCategory2.BackColor = Color.FromArgb(46, 51, 73);
 
             //Commands
-            dataGridView1.DataSource=productManager.GetAllByCategoryId(2).Data;
+            dataGridView1.DataSource = productManager.GetAllByCategoryId(2).Data;
             dataGridView1.ClearSelection();
             CheckIfUnitsInStock(40);
         }
 
         private void BtnCategory3_Click(object sender, EventArgs e)
         {
+            ProductSidePanel.Visible = true;
+            PersonSidePanel.Visible = false;
+            HomePageOpenPanel.Visible = false;
             //UI
             pnlNav.Height = btnCategory3.Height;
             pnlNav.Top = btnCategory3.Top;
             btnCategory3.BackColor = Color.FromArgb(46, 51, 73);
 
             //Commands
-            dataGridView1.DataSource=productManager.GetAllByCategoryId(3).Data;
+            dataGridView1.DataSource = productManager.GetAllByCategoryId(3).Data;
             dataGridView1.ClearSelection();
             CheckIfUnitsInStock(20);
         }
 
         private void BtnCategory4_Click(object sender, EventArgs e)
         {
+            ProductSidePanel.Visible = true;
+            PersonSidePanel.Visible = false;
+            HomePageOpenPanel.Visible = false;
             //UI
             pnlNav.Height = btnCategory4.Height;
             pnlNav.Top = btnCategory4.Top;
             btnCategory4.BackColor = Color.FromArgb(46, 51, 73);
 
             //Commands
-            dataGridView1.DataSource=productManager.GetAllByCategoryId(4).Data;
+            dataGridView1.DataSource = productManager.GetAllByCategoryId(4).Data;
             dataGridView1.ClearSelection();
             CheckIfUnitsInStock(100);
         }
         private void btnCategory5_Click(object sender, EventArgs e)
         {
-            PersonManager personManager=new(new EfPersonDal());
+            ProductSidePanel.Visible = false;
+            PersonSidePanel.Visible = true;
+            HomePageOpenPanel.Visible = false;
+
             //UI
             pnlNav.Height = btnCategory4.Height;
             pnlNav.Top = btnCategory4.Top;
@@ -138,7 +155,7 @@ namespace UI
 
         [DllImport("user32.dll", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
-        
+
         [DllImport("user32.dll", EntryPoint = "SendMessage")]
         private extern static void SendMessage(System.IntPtr hWnd, int wMsg, int wParam, int lParam);
 
@@ -203,7 +220,7 @@ namespace UI
         }
 
         private void TxtProductBarcode_Leave(object sender, EventArgs e)
-        {   
+        {
             if (txtProductBarcode.Text == Messages.Space)
                 txtProductBarcode.Text = Messages.ProductBarcode;
         }
@@ -229,9 +246,12 @@ namespace UI
         CategoryManager categoryManager = new(new EfCategoryDal());
         private void HomePage_Load(object sender, EventArgs e)
         {
+            LabDateAndTime.Text = DateTime.Now.ToString();
+            HomePageOpenPanel.Visible = true;
+
             labelSomeUser.Text = adminOrNot;
             labelUsername.Text = userName;
-            if (labelSomeUser.Text=="Admin")
+            if (labelSomeUser.Text == "Admin")
             {
                 btnCategory5.Visible = true;
                 btnLog.Visible = true;
@@ -250,26 +270,9 @@ namespace UI
                     cmbCategories.Items.Add(category.CategoryName);
                 }
             }
+
             else
                 MessageBox.Show(Messages.UnknownError);
-
-            
-            
-        }
-        //Çıkış Yap butonu
-        private void BtnLogOut_Click(object sender, EventArgs e)
-        {
-            pnlNav.Height = btnLogOut.Height;
-            pnlNav.Top = btnLogOut.Top;
-            btnLogOut.BackColor = Color.FromArgb(46, 51, 73);
-            //commands
-            LoginPage loginPage = new();
-            loginPage.Show();
-            this.Close();
-        }
-        private void BtnLogOut_Leave(object sender, EventArgs e)
-        {
-            btnLogOut.BackColor = Color.FromArgb(24, 30, 54);
         }
 
         //Kategori butonları
@@ -318,7 +321,7 @@ namespace UI
         private void BtnAdd_Click(object sender, EventArgs e)
         {
             btnChange.Text = Messages.Add;
-            cmbCategories.Text = Messages.Category ;
+            cmbCategories.Text = Messages.Category;
             if (panelChange.Visible == true)
                 panelChange.Visible = false;
             else
@@ -330,6 +333,7 @@ namespace UI
         public int sayi;
         private void BtnEdit_Click(object sender, EventArgs e)
         {
+            HomePageOpenPanel.Visible = false;
             btnChange.Text = Messages.Update;
             if (panelChange.Visible == true)
                 panelChange.Visible = false;
@@ -345,11 +349,19 @@ namespace UI
             txtUnitsInStock.Text = Messages.UnitsInStock;
             txtProductCode.Text = Messages.ProductCode;
             txtProductBarcode.Text = Messages.ProductBarcode;
-            txtProductDesc.Text= Messages.ProductDesc;
+            txtProductDesc.Text = Messages.ProductDesc;
+        }
+        void PersonPanelChangeReset()
+        {
+            txtPersonName.Text = Messages.PersonName;
+            txtPersonLastName.Text = Messages.PersonLastName;
+            txtPersonPhone.Text = Messages.PersonPhone;
+            txtPersonMail.Text = Messages.PersonMail;
+            txtPersonAdress.Text = Messages.PersonAdress;
         }
         private void DataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if(sayi==1)
+            if (sayi == 1)
             {
                 cmbCategories.Text = Messages.Space;
                 string? id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
@@ -361,18 +373,35 @@ namespace UI
                 string? productDescription = dataGridView1.CurrentRow.Cells[6].Value.ToString();
 
                 txtProductId.Text = id;
-                cmbCategories.SelectedText= categoryName;
-                txtProductName.Text= productName;
-                txtUnitsInStock.Text= unitInStock;
+                cmbCategories.SelectedText = categoryName;
+                txtProductName.Text = productName;
+                txtUnitsInStock.Text = unitInStock;
                 txtProductCode.Text = productCode;
-                txtProductBarcode.Text= productBarcode;
-                txtProductDesc.Text= productDescription;
+                txtProductBarcode.Text = productBarcode;
+                txtProductDesc.Text = productDescription;
+            }
+            else if (person == 1)
+            {
+                string? personId = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                string? userId = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                string? firstName = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                string? lastName = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                string? phone = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                string? eMail = dataGridView1.CurrentRow.Cells[5].Value.ToString();
+                string? adress = dataGridView1.CurrentRow.Cells[6].Value.ToString();
+
+                txtPersonId.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                txtPersonName.Text = firstName;
+                txtPersonLastName.Text = lastName;
+                txtPersonPhone.Text = phone;
+                txtPersonMail.Text = eMail;
+                txtPersonAdress.Text = adress;
             }
         }
 
         private void BtnChange_Click(object sender, EventArgs e)
         {
-            if (sayi==0)
+            if (sayi == 0)
             {
                 productManager.Add(new Product
                 {
@@ -395,11 +424,11 @@ namespace UI
                 panelChange.Visible = false;
                 dataGridView1.DataSource = productManager.GetAllByCategoryId(index).Data;
             }
-            else if (sayi==1)
+            else if (sayi == 1)
             {
                 productManager.Update(new Product
                 {
-                    ProductId=Convert.ToInt32(txtProductId.Text),
+                    ProductId = Convert.ToInt32(txtProductId.Text),
                     CategoryId = index,
                     ProductName = txtProductName.Text,
                     UnitsInStock = Convert.ToInt16(txtUnitsInStock.Text),
@@ -426,9 +455,9 @@ namespace UI
         {
             if (cmbCategories.SelectedIndex == 0)
                 index = 1;
-            else if(cmbCategories.SelectedIndex==1) index = 2;
-            else if(cmbCategories.SelectedIndex==2) index = 3;
-            else if(cmbCategories.SelectedIndex==3) index = 4;
+            else if (cmbCategories.SelectedIndex == 1) index = 2;
+            else if (cmbCategories.SelectedIndex == 2) index = 3;
+            else if (cmbCategories.SelectedIndex == 3) index = 4;
 
 
         }
@@ -437,7 +466,7 @@ namespace UI
         {
             productManager.Delete(new Product { ProductId = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value) });
             dataGridView1.DataSource = productManager.GetAllByCategoryId(index).Data;
-           
+
             //LOG EKLE
             logManager.Add(new Log
             {
@@ -454,6 +483,9 @@ namespace UI
 
         private void btnLog_Click(object sender, EventArgs e)
         {
+            ProductSidePanel.Visible = false;
+            PersonSidePanel.Visible = false;
+            HomePageOpenPanel.Visible = false;
             //UI
             pnlNav.Height = btnCategory4.Height;
             pnlNav.Top = btnCategory4.Top;
@@ -467,6 +499,7 @@ namespace UI
         //Search button
         private void txtSearch_TextChanged_1(object sender, EventArgs e)
         {
+            HomePageOpenPanel.Visible = false;
             string search = txtSearch.Text;
             using (StockPostgresContext context = new())
             {
@@ -477,6 +510,97 @@ namespace UI
             }
         }
 
+        private void LabDateAndTime_Click(object sender, EventArgs e)
+        {
 
+        }
+        public int person;
+        private void btnUser_Click(object sender, EventArgs e)
+        {
+            //btnChange.Text = Messages.Add;
+            cmbCategories.Text = Messages.Category;
+            if (PanelUserChange.Visible == true)
+                PanelUserChange.Visible = false;
+            else
+                PanelUserChange.Visible = true;
+            person = 0;
+        }
+
+        private void btnUserChange_Click(object sender, EventArgs e)
+        {
+            if (person == 0)
+            {
+                personManager.Add(new Person
+                {
+                    FirstName = txtPersonName.Text,
+                    LastName = txtPersonLastName.Text,
+                    Phone = txtPersonPhone.Text,
+                    Email = txtPersonMail.Text,
+                    Adress = txtPersonAdress.Text,
+                    UserId = 2
+                });
+                //LOG EKLE
+                logManager.Add(new Log
+                {
+                    Username = userName,
+                    Description = txtPersonName.Text + " " + txtPersonLastName.Text + " Adında kullanıcı oluşturuldu.",
+                    Date = DateTime.Now.ToString()
+                });
+
+                PersonPanelChangeReset();
+                PanelUserChange.Visible = false;
+            }
+            else if (person == 1)
+            {
+                personManager.Update(new Person
+                {
+                    PersonId = Convert.ToInt32(txtPersonId.Text),
+                    FirstName = txtPersonName.Text,
+                    LastName = txtPersonLastName.Text,
+                    Phone = txtPersonPhone.Text,
+                    Email = txtPersonMail.Text,
+                    Adress = txtPersonAdress.Text,
+                    UserId = Convert.ToInt32("2")
+                });
+
+                //LOG EKLE
+                logManager.Add(new Log
+                {
+                    Username = userName,
+                    Description = txtPersonName.Text + " " + txtPersonLastName.Text + " Adındaki kullanıcı güncellendi.",
+                    Date = DateTime.Now.ToString()
+                });
+
+                PanelChangeReset();
+                panelChange.Visible = false;
+                dataGridView1.DataSource = productManager.GetAllByCategoryId(index).Data;
+            }
+        }
+
+        private void btnUserChanges_Click(object sender, EventArgs e)
+        {
+            HomePageOpenPanel.Visible = false;
+            btnUserChange.Text = Messages.Update;
+            if (PanelUserChange.Visible == true)
+                PanelUserChange.Visible = false;
+            else
+                PanelUserChange.Visible = true;
+            person = 1;
+            PersonPanelChangeReset();
+        }
+
+        private void btnUserDelete_Click(object sender, EventArgs e)
+        {
+            personManager.Delete(new Person { PersonId = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value) });
+            dataGridView1.DataSource = personManager.GetAll().Data;
+            Person person = new Person();
+            //LOG EKLE
+            logManager.Add(new Log
+            {
+                Username = userName,
+                Description = dataGridView1.CurrentRow.Cells[2].Value + "Kullanıcı Sildi",
+                Date = DateTime.Now.ToString()
+            });
+        }
     }
 }

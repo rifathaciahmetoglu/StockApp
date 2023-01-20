@@ -24,5 +24,6 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<Person>? persons { get; set; }
         public DbSet<Log> logs { get; set; }
 
+
     }
 }
